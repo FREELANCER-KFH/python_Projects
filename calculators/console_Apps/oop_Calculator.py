@@ -61,6 +61,8 @@ class opp_Calculator:
                     resultado_Final = valor_Actual % valor_Nuevo
             case "^":
                 resultado_Final = valor_Actual ** valor_Nuevo
+            case "√":
+                resultado_Final = valor_Actual ** (1/valor_Nuevo)
         return resultado_Final
     
     def operacion(self, operador):
@@ -74,11 +76,11 @@ class opp_Calculator:
             self.desea_Continuar()
 
     def iniciar_Proceso(self, codigo):
-        if(codigo <= 0 or codigo >= 8):
+        if(codigo < 1 or codigo > 8):
             self.finalizar_Proceso(1)
         else:
             match codigo:
-                case 7:
+                case 8:
                     self.finalizar_Proceso(3)
                 case 1:
                     operador = '+'
@@ -97,6 +99,9 @@ class opp_Calculator:
                     self.operacion(operador)
                 case 6:
                     operador = '^'
+                    self.operacion(operador)
+                case 7:
+                    operador = '√'
                     self.operacion(operador)
 
     def validacion_Digito(self, digito):
@@ -117,7 +122,8 @@ class opp_Calculator:
             print('digite 4 para el cociente de la division: ')
             print('digite 5 para el reciduo de la division: ')
             print('digite 6 para la potencia: ')
-            print('digite 7 para salir del programa: ')
+            print('digite 7 para la raiz: ')
+            print('digite 8 para salir del programa: ')
             codigo_Menu = self.validacion_Digito(input())
             return self.iniciar_Proceso(codigo_Menu)
         

@@ -77,7 +77,7 @@ def finalizar_Proceso(condicion):
 
 #Funcion iniciar_Proceso
 def iniciar_Proceso(codigo):
-    if(codigo <= 0 or codigo >= 8):
+    if(codigo < 1 or codigo > 8):
         finalizar_Proceso(1)
     else:
         match codigo:
