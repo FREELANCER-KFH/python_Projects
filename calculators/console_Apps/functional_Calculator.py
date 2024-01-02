@@ -1,7 +1,10 @@
 #Funcion limpiar_Pantalla
 def limpiar_Pantalla():
     import os
-    return os.system("cls")
+    if(os.name == "posix"):
+        return os.system("clear")
+    else:
+        return os.system("cls")
 
 #Funcion calculadora
 def calculadora(valor_Actual, valor_Nuevo, op):
