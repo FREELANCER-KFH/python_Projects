@@ -27,7 +27,11 @@ def calculadora(valor_Actual, valor_Nuevo, op):
         case "^":
             resultado_Final = valor_Actual ** valor_Nuevo
         case '√':
-            resultado_Final = valor_Actual ** (1 / valor_Nuevo)
+            if(valor_Nuevo == 0):
+                print('No se puede dividir por cero')
+                resultado_Final = valor_Actual
+            else:
+                resultado_Final = valor_Actual ** (1 / valor_Nuevo)
     return resultado_Final
 
 #Funcion desea_Continuar
