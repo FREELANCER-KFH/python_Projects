@@ -5,7 +5,10 @@ class opp_Calculator:
 
     def limpiar_Pantalla(self):
         import os
-        return os.system("cls")
+        if(os.name == 'posix'):
+            return os.system("clear")
+        else:
+            return os.system("cls")
     
     def finalizar_Proceso(self, condicion):
         self.opcion_Incorrecta = 'Opcion incorrecta, favor digitar una opcion valida.'
