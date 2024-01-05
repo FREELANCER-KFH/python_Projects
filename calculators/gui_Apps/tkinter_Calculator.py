@@ -1,4 +1,15 @@
+# Calculator with tkinter
+# Version: 1.0.0
 # Autor: Kevin Feliz Henriquez
+# Github: https://github.com/FREELANCER-KFH
+# Date: 01/05/2024
+# Python version: 3.9.6
+# Tkinter version: 8.6
+# License: MIT
+# Editor: Visual Studio Code (https://code.visualstudio.com/)
+
+
+#Import
 from tkinter import *
 
 #Window
@@ -35,56 +46,65 @@ for row in range(1, 6):
     operator = ""
     number = ""
     text = StringVar()
+    container = ""
+    result = 0
 
 #Click
 def click_btn(value):
     global number
+    global operator
+    global container
     text = str(value)
     if text.isnumeric():
         text = int(text)
         if (text >= 0 and text <= 9):
             number += str(text)
+            container = number
             update(number)
+    elif text == '.' or text == '(' or text == ')':
+        number += text
+        update(number)
     else:
-        if text == '.' or text == '(' or text == ')':
-            number += str(text)
-            update(number)
         if text == '+' or text == '-' or text == '*' or text == '/' or text == '%':
-            global operator
             operator = text
-            number = ""
             update(operator)
-        if text == '=':
-            calculate(int(number), operator)
-        if text == 'C':
+            number = ""
+        elif text == '=':
+            update(calculate(int(container), operator))
+            number = ""
+            operator = ""
+        elif text == 'C':
             clear()
 
 #Calculate
-def calculate(number, operator):
-    result = 0
-    match(operator):
+def calculate(current, op):
+    global result
+    match(op):
         case '+':
-            result += number
-            update(result)
+            result += current
+            return result
         case '-':
-            result -= number
-            update(result)
+            result -= current
+            return result
         case '*':
-            result *= number
-            update(result)
+            result *= current
+            return result
         case '/':
-            result /= number
-            update(result)
+            result /= current
+            return result
         case '%':
-            result %= number
-            update(result)
+            result %= current
+            return result
 
 #Clear
 def clear():
-    clean_box = ""
+    global operator
+    global result
     global number
     number = ""
-    update(clean_box)
+    operator = ""
+    result = 0
+    update(number)
 
 #Update
 def update(value):
