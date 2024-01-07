@@ -35,12 +35,6 @@ def btn_click(value):
     else:
         txt_Entry.insert(END, value)
 
-def txt_show(value):
-    if value == 0:
-        return "0"
-    else:
-        return value
-
 #Window
 root = Tk()
 root.title("Calculator")
@@ -72,7 +66,7 @@ for row in range(1, 6):
         i += 1
 
 #Screen
-txt_Entry = Entry(root, font=("arial", 20, "bold"), width=22, borderwidth=10, background="black", fg="white", textvariable=txt_show(0))
+txt_Entry = Entry(root, font=("arial", 20, "bold"), width=22, borderwidth=10, background="black", fg="white")
 txt_Entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 
 #Loop
